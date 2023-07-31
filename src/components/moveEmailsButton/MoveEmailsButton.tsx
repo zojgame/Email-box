@@ -16,7 +16,7 @@ const MoveEmailsButton = observer(() => {
     const handleOnOkButtonClick = () => {
         if(folderId !== ''){
             emailsStore.moveMessages(folderId)
-            message.success('Сообщение успешно перемещены!')
+            message.success('Сообщения успешно перемещены!')
             setIsModal(false)
         }
     }

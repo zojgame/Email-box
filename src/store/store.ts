@@ -28,6 +28,16 @@ export class EmailStore{
         this.currentFolderMessages = [...folder.messages]
     }
 
+    searchMessage(messageId: string){
+        [...this.folders].forEach((folder) => {
+            const message = [...folder.messages].find((message) => message.key === messageId)
+            if(message){
+                this.currentFolderMessages = [message]
+                return
+            }
+        })
+    }
+
     createFolder(folder: Folder){
         const updatedFolder = [...this.folders, folder]
         this.folders = updatedFolder
@@ -40,18 +50,26 @@ export class EmailStore{
     }
 
     moveMessages(folderId : string){
-        const folder = this.folders.find((folder) => folder.key === folderId)
+        const targetFolder = this.folders.find((folder) => folder.key === folderId)
 
-        if(folder){
-            const updatedTargetMessages : Email[] = [...folder.messages, ...this.selectedMails]
-            const updatedTargetFolder : Folder = { ...folder, messages: updatedTargetMessages }
+        if(targetFolder){
+            const filteredSelectedMails = [...this.selectedMails].filter((mail) => {
+                const targetFolderMails = [...{...targetFolder}.messages]
+                const isMailContains = targetFolderMails.find((folderMail) => folderMail.key === mail.key) !== undefined
+                if(isMailContains){
+                    return false
+                }
+                return true
+            })
 
-            const updatedSourceMessages : Email[]  = [...this.currentFolderMessages].filter((message) => {
+            const updatedTargetMessages : Email[] = [...{...targetFolder}.messages, ...filteredSelectedMails]
+            const updatedTargetFolder : Folder = { ...targetFolder, messages: updatedTargetMessages }
+
+            const updatedSourceMessages : Email[]  = [...{...this.currentFolder}.messages].filter((message) => {
                 const isMessageContain = [...this.selectedMails].find((mail) => mail.key === message.key) !== undefined;
 
                 return !isMessageContain
             })
-
             const updatedSourceFolder : Folder = {...this.currentFolder, messages: [...updatedSourceMessages]}
 
             const updatedFolders = [...this.folders].map((folder) => {
@@ -69,6 +87,7 @@ export class EmailStore{
             this.currentFolderMessages = [...updatedSourceMessages]
             this.folders = [...updatedFolders]
             this.selectedMails = []
+            this.currentFolder = {...this.currentFolder, messages: [...updatedSourceMessages]}
         }
     }
 }

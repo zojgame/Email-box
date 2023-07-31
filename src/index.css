@@ -81,5 +81,27 @@ button:focus-visible {
   cursor: pointer !importaint;
 }
 
-.ant-table-row {
+.header {
+  padding: 0;
+  color: white;
+  text-align: center;
+}
+
+.content-block {
+  margin: 0 16px;
+}
+
+.layout-block {
+  min-height: 100vh;
+}
+
+.panel-buttons {
+  margin: 24px 24px 0 24px;
+  display: flex;
+  gap: 24px;
+}
+
+.select-field {
+  width: 20%;
+  margin: 24px;
 }

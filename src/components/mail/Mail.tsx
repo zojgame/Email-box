@@ -1,11 +1,10 @@
 
-import { Modal, Select, Table } from 'antd'
+import { Modal, Table } from 'antd'
 import { TableRowSelection } from 'antd/es/table/interface'
 import { columns, DataType, Email } from '..'
 import { emailsStore } from '../../store/store'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
-import '../../index.css'
 
 const convertToDataType = (emails : Email[]) => {
   const convertedData = emails.map((email) => {
@@ -29,7 +28,7 @@ const convertToEmail = (data: DataType[]) => {
     const result : Email = {
       key: d.key,
       author: d.author,
-      data: d.fullText,
+      data: d.data,
       message: d.preview,
       title: d.title
     } 
@@ -75,36 +74,34 @@ const Mail = observer(({emails} : MailProps) => {
   }
 
   return (      
-      <div>
-        <Table
-          style={{ padding: 24, minHeight: 360, cursor: 'pointer'}}
-          rowSelection={{...rowSelection, selectedRowKeys: [...selected] }}
-          onRow={handleOnRow}
-          columns={columns}
-          dataSource={[...convertToDataType(emails)]}
-          // styles={{}}                 
-       />
-        <Modal 
-          width={750} 
-          // className='table-data'       
-          open={isModal}
-          onCancel={handleOnCancelButtonClick}
-          onOk={handleOnOkButtonClick}
-          title={currentEmail?.title}>
-            <div className='full-message-block'>
-              <div>
-                <b>Автор:</b><div >{currentEmail?.author}</div>
-              </div>
-              <div>
-                <b>Дата отправки:</b><div>{currentEmail?.data}</div>
-              </div>
-              <div>
-                <b>Текст сообщения:</b><div>{currentEmail?.fullText}</div>
-              </div>
+    <div>
+      <Table
+        style={{ padding: 24, minHeight: 360, cursor: 'pointer'}}
+        rowSelection={{...rowSelection, selectedRowKeys: [...selected] }}
+        onRow={handleOnRow}
+        columns={columns}
+        dataSource={[...convertToDataType(emails)]}             
+      />
+      <Modal 
+        width={750}      
+        open={isModal}
+        onCancel={handleOnCancelButtonClick}
+        onOk={handleOnOkButtonClick}
+        title={currentEmail?.title}>
+          <div className='full-message-block'>
+            <div>
+              <b>Автор:</b><div >{currentEmail?.author}</div>
             </div>
-            
-          </Modal>
-      </div>
+            <div>
+              <b>Дата отправки:</b><div>{currentEmail?.data}</div>
+            </div>
+            <div>
+              <b>Текст сообщения:</b><div>{currentEmail?.fullText}</div>
+            </div>
+          </div>
+          
+        </Modal>
+    </div>
   )
 })
 

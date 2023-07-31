@@ -17,7 +17,7 @@ const Folders = observer(({folders} : FoldersProps) => {
   };
 
   const handleOnSelectFolder = (value : SelectItem) => {
-    const folder = folders.find((folder) => folder.key === value.key)
+    const folder = [...folders].find((folder) => folder.key === value.key)
     if(folder !== undefined){
       emailsStore.setCurrentFolder(folder)
       emailsStore.setSelectedEmails([])

@@ -3,7 +3,7 @@ import {observer} from 'mobx-react-lite'
 
 const ControlPanel = observer(() => {
    return (
-        <div className="panel-buttons" style={{ margin: '24px 24px 0 24px', display: 'flex', gap: '24px'}}>
+        <div className="panel-buttons">
             <MoveEmailsButton />
             <AddFolderButton />
             <DeleteFolderButton />

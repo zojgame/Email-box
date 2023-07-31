@@ -1,6 +1,6 @@
 import { Layout } from "antd";
 import { Content } from "antd/es/layout/layout";
-import { Mail, Folders, folders, ControlPanel } from "..";
+import { Mail, Folders, folders, ControlPanel, SearchField } from "..";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { emailsStore } from "../../store/store";
@@ -15,12 +15,13 @@ const MenuComponent = observer(() => {
 
   return (
     <>
-    <Layout style={{ minHeight: '100vh' }}>            
+    <Layout className="layout-block">            
       <Folders folders={emailsStore.folders}/>
       <Layout>
-        <Header style={{ padding: '0', color: 'white', textAlign: 'center' }}>Почта</Header>
-        <Content style={{ margin: '0 16px' }}>
+        <Header className="header">Почта</Header>
+        <Content className="content-block" >
             <ControlPanel />
+            <SearchField />
             <Mail emails={emailsStore.currentFolderMessages}/>
         </Content>
       </Layout>

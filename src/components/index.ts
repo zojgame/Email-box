@@ -14,3 +14,6 @@ export { AddFolderButton } from "./addFolderButton/AddFolderButton";
 export { DeleteFolderButton } from "./deleteFolderButton/DeleteFolderButton";
 export { MoveEmailsButton } from "./moveEmailsButton/MoveEmailsButton";
 
+export { SearchField } from "./searchField/SearchField";
+export type{ EmailOption } from "./searchField/types";
+
