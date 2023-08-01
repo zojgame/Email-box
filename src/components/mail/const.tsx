@@ -1,4 +1,6 @@
 import { ColumnsType } from 'antd/es/table';
+import { DeleteMessageButton } from '..';
+
 
 const columns: ColumnsType<DataType> = [
   {
@@ -14,6 +16,14 @@ const columns: ColumnsType<DataType> = [
     title: 'Дата',
     dataIndex: 'data',
   },
+  {
+    title: 'Действие',
+    dataIndex: '',
+    key: 'x',
+    render: (_value, record) => { 
+      return (<DeleteMessageButton record={record} />)
+    }}
+
 ]
 
 type DataType = {

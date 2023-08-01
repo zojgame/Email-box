@@ -4,6 +4,7 @@ import { Mail, Folders, folders, ControlPanel, SearchField } from "..";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { emailsStore } from "../../store/store";
+import { MailOutlined } from "@ant-design/icons";
 
 const { Header } = Layout;
 
@@ -18,7 +19,7 @@ const MenuComponent = observer(() => {
     <Layout className="layout-block">            
       <Folders folders={emailsStore.folders}/>
       <Layout>
-        <Header className="header">Почта</Header>
+        <Header className="header">Почта <MailOutlined className="mail"/></Header>
         <Content className="content-block" >
             <ControlPanel />
             <SearchField />

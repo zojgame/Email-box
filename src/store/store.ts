@@ -90,6 +90,23 @@ export class EmailStore{
             this.currentFolder = {...this.currentFolder, messages: [...updatedSourceMessages]}
         }
     }
+
+    deleteMessage(messageId: React.Key){
+        const filteredMessages = [...this.currentFolderMessages].filter((message) => message.key !== messageId)
+        const updatedFolder = {...this.currentFolder, messages: filteredMessages}
+        const updatedFolders = [...this.folders].map((folder) => {
+            if(folder.key === updatedFolder.key){
+                return updatedFolder
+            }
+            else{
+                return folder
+            } 
+        })
+
+        this.currentFolder = updatedFolder
+        this.folders = updatedFolders
+        this.currentFolderMessages = filteredMessages;
+    }
 }
 
 

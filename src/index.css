@@ -81,12 +81,6 @@ button:focus-visible {
   cursor: pointer !importaint;
 }
 
-.header {
-  padding: 0;
-  color: white;
-  text-align: center;
-}
-
 .content-block {
   margin: 0 16px;
 }
@@ -104,4 +98,17 @@ button:focus-visible {
 .select-field {
   width: 20%;
   margin: 24px;
+}
+
+.header {
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header .mail {
+  font-size: 30px;
 }

@@ -80,6 +80,7 @@ const Mail = observer(({emails} : MailProps) => {
         rowSelection={{...rowSelection, selectedRowKeys: [...selected] }}
         onRow={handleOnRow}
         columns={columns}
+        pagination={{ position: ['bottomCenter'] }}
         dataSource={[...convertToDataType(emails)]}             
       />
       <Modal 

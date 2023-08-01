@@ -17,3 +17,5 @@ export { MoveEmailsButton } from "./moveEmailsButton/MoveEmailsButton";
 export { SearchField } from "./searchField/SearchField";
 export type{ EmailOption } from "./searchField/types";
 
+export { DeleteMessageButton } from "./deleteMessageButton/DeleteMessageButton";
+
