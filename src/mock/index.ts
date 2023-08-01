@@ -1,1 +1,0 @@
-export { emails } from "./data";
