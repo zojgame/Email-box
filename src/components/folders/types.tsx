@@ -1,4 +1,4 @@
-
+// Типы, используемые в компоненте Folders
 type Email = {
     key: React.Key,
     author: string,

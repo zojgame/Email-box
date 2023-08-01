@@ -4,6 +4,11 @@ import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { emailsStore } from "../../store/store";
 
+/**
+ * Компонент для перемещния выбранных писем в другую папку
+ * Содержит также модальное окно для выбора папки перемещения
+ * @returns {JSX.Element} Возвращает React компонент
+ */
 const MoveEmailsButton = observer(() => {
     const [isModal, setIsModal] = useState(false)
     const [folderId, setFolderId] = useState('')

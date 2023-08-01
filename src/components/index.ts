@@ -1,3 +1,4 @@
+// Папка для удобства, содержащая все импорты
 export { MenuComponent } from "./menu/Menu";
 
 export { Folders } from "./folders/Folders";
@@ -18,4 +19,7 @@ export { SearchField } from "./searchField/SearchField";
 export type{ EmailOption } from "./searchField/types";
 
 export { DeleteMessageButton } from "./deleteMessageButton/DeleteMessageButton";
+
+export { BoldMessageUI } from "./boldMessageUI/BoldMessage";
+export { IsReadIconUI } from "./isReadIconUI/IsReadIcon";
 

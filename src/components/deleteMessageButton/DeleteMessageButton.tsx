@@ -3,11 +3,16 @@ import { Button } from "antd";
 import { emailsStore } from "../../store/store";
 import { DataType } from "..";
 
-interface DeleteMessageButton {
+interface DeleteMessageButtonProps {
     record : DataType
 }
 
-const DeleteMessageButton = ({record} : DeleteMessageButton) => {
+/**
+ * Кнопка удаление сообщения
+ * @returns {JSX.Element} Возвращает компонент
+ */
+
+const DeleteMessageButton = ({record} : DeleteMessageButtonProps) => {
     const handleOnClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
         event.stopPropagation()        
         emailsStore.deleteMessage(record.key)

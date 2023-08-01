@@ -1,6 +1,10 @@
 import { makeAutoObservable } from "mobx"
 import type { Email, Folder } from "../components"
-
+/**
+ * Глобальное хранилище, с данными и функциями, 
+ * позволяющими мутировать состояния приложения
+ * @returns {EmailStore} При создании возвращает экзепляр класса
+ */
 export class EmailStore{
     folders : Folder[] = []
     selectedMails : Email[] = []
@@ -134,6 +138,5 @@ export class EmailStore{
         }
     }
 }
-
 
 export const emailsStore = new EmailStore();

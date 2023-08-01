@@ -7,7 +7,11 @@ import { emailsStore } from "../../store/store";
 import { MailOutlined } from "@ant-design/icons";
 
 const { Header } = Layout;
-
+/**
+ * Компонент-обертка для всех компонентов приложения,
+ * в котором также происходит получение данных
+ * @returns {JSX.Element} Возвращает массив сообщений
+ */
 const MenuComponent = observer(() => {
     useEffect(() => {
         emailsStore.setCurrentFolder(folders[0])

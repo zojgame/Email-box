@@ -3,6 +3,11 @@ import { message, Button, Modal } from "antd";
 import { useState } from "react";
 import { emailsStore } from "../../store/store";
 
+/**
+ * Кнопка удаление папок
+ * @returns {JSX.Element} Возвращает компонент
+ */
+
 const DeleteFolderButton = () => {
     const [isModal, setIsModal] = useState(false);
 

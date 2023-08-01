@@ -6,6 +6,10 @@ import { emailsStore } from '../../store/store'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 
+/**
+ * Функция для конвертирования сообщений в нужный для таблицы тип
+ * @returns {DataType[]} Возвращает табличный тип данных
+ */
 const convertToDataType = (emails : Email[]) => {
   const convertedData = emails.map((email) => {
     const data: DataType = {
@@ -24,6 +28,10 @@ const convertToDataType = (emails : Email[]) => {
   return convertedData
 }
 
+/**
+ * Функция для конвертирования табличного типа в тип сообщения
+ * @returns {Email[]} Возвращает массив сообщений
+ */
 const convertToEmail = (data: DataType[]) => {
   const convertedData = data.map((d) => {
     const result : Email = {
@@ -44,7 +52,10 @@ const convertToEmail = (data: DataType[]) => {
 interface MailProps {
   emails : Email[]
 }
-
+/**
+ * Компонент отображающий таблицу с сообщениями
+ * @returns {JSX.Element} Возвращает компонент
+ */
 const Mail = observer(({emails} : MailProps) => {
   const [isModal, setIsModal] = useState(false)
   const [currentEmail, setCurrentEmail] = useState<DataType>()

@@ -6,6 +6,7 @@ import { Message } from "..";
 
 type MenuItem = Required<MenuProps>['items'][number]
 
+// Начальный набор папок
 const folderItems: MenuItem[] = [
     {label: 'Входящие', key: '1', icon: <ArrowDownOutlined />},
     {label: 'Черновик', key: '2', icon: <FormOutlined />},
@@ -14,6 +15,7 @@ const folderItems: MenuItem[] = [
     {label: 'Удаленные', key: '5', icon: <DeleteOutlined />},
 ]
 
+// Разделение всех папок на переменные
 const draftMessages = emails.filter((email) => email.type === Message.DRAFT)
 const deletedMessages = emails.filter((email) => email.type === Message.DELETED)
 const incomingMessages = emails.filter((email) => email.type === Message.INCOMING)

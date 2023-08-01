@@ -9,8 +9,13 @@ interface FoldersProps {
   folders: Folder[]
 }
 
+/**
+ * Навигационная панель слева с папками
+ * @returns {JSX.Element} Возвращает компонент
+ */
+
 const Folders = observer(({folders} : FoldersProps) => {
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(true)
 
   const toggleCollapsed = () => {
       setCollapsed(!collapsed);

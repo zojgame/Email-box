@@ -4,6 +4,11 @@ import { Email, EmailOption } from '..';
 import { emailsStore } from '../../store/store';
 import { useState } from 'react';
 
+/**
+ * Функция, которая конвертирует массив сообщений, 
+ * в нужный для селектора тип
+ * @returns {EmailOption[]} Возвращает массив опций для селектора
+ */
 function convertToOption(emails: Email[]) {
     const convertedEmails : EmailOption[] = emails.map((email) => {
         return {
@@ -16,7 +21,10 @@ function convertToOption(emails: Email[]) {
 
     return convertedEmails
 }
-
+/**
+ * Компонент поля поиска всех сообщений
+ * @returns {JSX.Element} Возвращает React компонент
+ */
 const SearchField = () => {
     const emailOptions = convertToOption(emails)
     const [selectedEmail, setSelectedEmail] = useState<EmailOption>()

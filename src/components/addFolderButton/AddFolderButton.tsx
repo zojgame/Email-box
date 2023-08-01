@@ -5,6 +5,12 @@ import { useState, ChangeEvent } from "react";
 import { Folder } from "..";
 import { emailsStore } from "../../store/store";
 
+/**
+ * Компонент кнопки добавления папки, содержит логику вызова модального окна
+ * с вводом названия папки, и добавления этой папки в store
+ * @returns {JSX.Element} Возвращает компонент кнопки
+ */
+
 const AddFolderButton = () => {
     const [isModalAddFolder, setIsModalAddFolder] = useState(false)
     const [folderInput, setFolderInput] = useState('')
