@@ -14,7 +14,8 @@ const convertToDataType = (emails : Email[]) => {
       preview: `${email.message.slice(0, 150)}...`,
       data: email.data,
       title: email.title,
-      fullText: email.message
+      fullText: email.message,
+      isRead: email.isRead
     }
 
     return data
@@ -30,7 +31,8 @@ const convertToEmail = (data: DataType[]) => {
       author: d.author,
       data: d.data,
       message: d.preview,
-      title: d.title
+      title: d.title,
+      isRead: d.isRead
     } 
 
     return result
@@ -61,6 +63,7 @@ const Mail = observer(({emails} : MailProps) => {
       onClick: () => {
         setIsModal(true)
         setCurrentEmail(record)
+        emailsStore.setMessageRead(record.key)
       },
     };
   }

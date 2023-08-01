@@ -14,8 +14,8 @@ const DeleteMessageButton = ({record} : DeleteMessageButton) => {
     }      
 
     return (
-      <Button style={{textAlign: 'center', width: '50%', padding: '5px 0'}} onClick={handleOnClick}>
-        <DeleteOutlined style={{fontSize: '20px'}}/>        
+      <Button className='button-delete' onClick={handleOnClick}>
+        <DeleteOutlined className="icon"/>        
       </Button>
   )
 }

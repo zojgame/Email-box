@@ -5,7 +5,8 @@ type Email = {
     data: string,
     message: string,
     title: string,
-    type?: Message
+    type?: Message,
+    isRead: boolean
 }
 
 enum Message{

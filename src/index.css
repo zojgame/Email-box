@@ -101,14 +101,28 @@ button:focus-visible {
 }
 
 .header {
+  padding: auto;
   color: white;
   display: flex;
   justify-content: center;
   gap: 10px;
+
   font-size: 20px;
   font-weight: bold;
+  vertical-align: center;
 }
 
 .header .mail {
   font-size: 30px;
+  margin: auto 0;
+}
+
+.button-delete {
+  text-align: center;
+  width: 50%;
+  padding: 5px 0;
+}
+
+.button-delete .icon {
+  font-size: 20px;
 }

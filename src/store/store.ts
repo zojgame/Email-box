@@ -107,6 +107,32 @@ export class EmailStore{
         this.folders = updatedFolders
         this.currentFolderMessages = filteredMessages;
     }
+
+    setMessageRead(messageId: React.Key){
+        const message = [...this.currentFolderMessages].find((message) => message.key === messageId)
+        if(message && !message.isRead){
+            const updatedMessages = [...this.currentFolderMessages].map((mes) => {
+                if(mes.key === messageId){
+                    return {...message, isRead: true}
+                }
+
+                return mes
+            })
+
+            const updatedFolders = [...this.folders].map((folder) => {
+                if(folder.key === this.currentFolder.key){
+                    return {...this.currentFolder, messages: updatedMessages}
+                }
+                else{
+                    return folder
+                } 
+            })
+            
+            this.folders = updatedFolders
+            this.currentFolderMessages = updatedMessages
+            this.currentFolder = {...this.currentFolder, messages: updatedMessages}
+        }
+    }
 }
 
 
