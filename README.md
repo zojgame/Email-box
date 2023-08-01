@@ -1,26 +1,30 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Для создания этого приложения использовались:
+- React + TypeScript
+- Mobx для (хранения состояния)
+- Antd (для визуальной части)
 
-Currently, two official plugins are available:
+Приложение представляет из себя почтовый ящик с набором CRUD операций для папок собщений.
+Папки с сообщениями можно создавать, удалять, и редактировать.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Чтобы создать кастомную папку на нужно нажать на кнопку "Добавить папку", во всплывающем окне
+будет поле с именем, которое нунжно ввести для новой папки.
+Чтобы удалить папку, нужно в соответствующей папке, нажать кнопку "удалить папку",
+после чего подтвердить действие в сплывающем окне.
 
-## Expanding the ESLint configuration
+Сами папки содержат в себе сообщения с полями: автор, заголовок, дата, полный текст, 
+прочитано ли сообщение(Если оно не прочитано, то текст внутри строки таблицы помечается жирным текстом 
+и в конце таблицы это помечается красной иконкой, если прочитанно - зеленой).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Сообщения можно перемещать между папками и удалять. 
+Чтобы переместить сообщения нужно нажатием пометить их чекбоксы и нажать кнопку "Переместить". 
+После чего во всплывающем окне выбрать папку, в которую нужно переместить сообщения.
 
-- Configure the top-level `parserOptions` property like this:
+Также нажатием на сообщение можно раскрыть подробную информацию письма.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+Реализован функционал поиска по всем сообщениям: в верхней панели нужно ввести заголовок сообщения, 
+после чего нужно выбрать его в выпадающем списке.
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
