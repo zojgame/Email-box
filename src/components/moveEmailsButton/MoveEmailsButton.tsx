@@ -11,7 +11,7 @@ import { emailsStore } from "../../store/store";
  */
 const MoveEmailsButton = observer(() => {
     const [isModal, setIsModal] = useState(false)
-    const [folderId, setFolderId] = useState('')
+    const [folderId, setFolderId] = useState('1')
     const isDisable = emailsStore.selectedMails.length === 0;
 
     const handleOnCancelButtonClick = () => {
@@ -19,9 +19,13 @@ const MoveEmailsButton = observer(() => {
     }
 
     const handleOnOkButtonClick = () => {
-        if(folderId !== ''){
+        if(emailsStore.currentFolder.key !== folderId){
             emailsStore.moveMessages(folderId)
             message.success('Сообщения успешно перемещены!')
+            setIsModal(false)
+        }
+        else{
+            message.error('Сообщения уже находятся в папке!')
             setIsModal(false)
         }
     }

@@ -11,6 +11,7 @@ import { useState } from 'react'
  * @returns {DataType[]} Возвращает табличный тип данных
  */
 const convertToDataType = (emails : Email[]) => {
+  
   const convertedData = emails.map((email) => {
     const data: DataType = {
       key: email.key,
@@ -24,7 +25,7 @@ const convertToDataType = (emails : Email[]) => {
 
     return data
   })
-
+  
   return convertedData
 }
 
@@ -105,7 +106,7 @@ const Mail = observer(({emails} : MailProps) => {
         title={currentEmail?.title}>
           <div className='full-message-block'>
             <div>
-              <b>Автор:</b><div >{currentEmail?.author}</div>
+              <b>Автор:</b><div>{currentEmail?.author}</div>
             </div>
             <div>
               <b>Дата отправки:</b><div>{currentEmail?.data}</div>

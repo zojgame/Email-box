@@ -33,11 +33,13 @@ export class EmailStore{
     }
 
     searchMessage(messageId: string){
+
         [...this.folders].forEach((folder) => {
+            
             const message = [...folder.messages].find((message) => message.key === messageId)
+
             if(message){
                 this.currentFolderMessages = [message]
-                return
             }
         })
     }
@@ -50,6 +52,7 @@ export class EmailStore{
     deleteFolder(){
         const updatedFolders = [...this.folders].filter((folder) => folder.key !== this.currentFolder.key)
         this.currentFolder = updatedFolders[0]
+        this.currentFolderMessages = [...updatedFolders[0].messages]
         this.folders = [...updatedFolders]
     }
 
@@ -57,16 +60,8 @@ export class EmailStore{
         const targetFolder = this.folders.find((folder) => folder.key === folderId)
 
         if(targetFolder){
-            const filteredSelectedMails = [...this.selectedMails].filter((mail) => {
-                const targetFolderMails = [...{...targetFolder}.messages]
-                const isMailContains = targetFolderMails.find((folderMail) => folderMail.key === mail.key) !== undefined
-                if(isMailContains){
-                    return false
-                }
-                return true
-            })
 
-            const updatedTargetMessages : Email[] = [...{...targetFolder}.messages, ...filteredSelectedMails]
+            const updatedTargetMessages : Email[] = [...{...targetFolder}.messages, ...this.selectedMails]
             const updatedTargetFolder : Folder = { ...targetFolder, messages: updatedTargetMessages }
 
             const updatedSourceMessages : Email[]  = [...{...this.currentFolder}.messages].filter((message) => {
@@ -96,8 +91,10 @@ export class EmailStore{
     }
 
     deleteMessage(messageId: React.Key){
-        const filteredMessages = [...this.currentFolderMessages].filter((message) => message.key !== messageId)
-        const updatedFolder = {...this.currentFolder, messages: filteredMessages}
+        const filteredCurrentMessages = [...this.currentFolderMessages].filter((message) => message.key !== messageId)
+        const filteredFolderMessages = [...{...this.currentFolder}.messages].filter((message) => message.key !== messageId)
+
+        const updatedFolder = {...this.currentFolder, messages: filteredFolderMessages}
         const updatedFolders = [...this.folders].map((folder) => {
             if(folder.key === updatedFolder.key){
                 return updatedFolder
@@ -109,15 +106,20 @@ export class EmailStore{
 
         this.currentFolder = updatedFolder
         this.folders = updatedFolders
-        this.currentFolderMessages = filteredMessages;
+        this.currentFolderMessages = filteredCurrentMessages
     }
 
     setMessageRead(messageId: React.Key){
         const message = [...this.currentFolderMessages].find((message) => message.key === messageId)
+        // if(message && !message.isRead){
         if(message && !message.isRead){
-            const updatedMessages = [...this.currentFolderMessages].map((mes) => {
-                if(mes.key === messageId){
-                    return {...message, isRead: true}
+            // Обновление сообщений во всех папках
+            const currentMessages = [...{...this.currentFolder}.messages]
+
+            const updatedMessages : Email[] = currentMessages.map((mes) => {
+                if(mes.key === message.key){
+                    const updatedMessage : Email = {...message, isRead: true}
+                    return updatedMessage
                 }
 
                 return mes
@@ -131,9 +133,20 @@ export class EmailStore{
                     return folder
                 } 
             })
+
+            // Обновление сообщений на текущей странице
+            const updatedCurrentPageMessages = [...this.currentFolderMessages].map((mes) => {
+                if(mes.key === message.key){
+                    const updatedMessage : Email = {...message, isRead: true}
+                    return updatedMessage
+                }
+
+                return mes
+            })
+
             
             this.folders = updatedFolders
-            this.currentFolderMessages = updatedMessages
+            this.currentFolderMessages = updatedCurrentPageMessages
             this.currentFolder = {...this.currentFolder, messages: updatedMessages}
         }
     }

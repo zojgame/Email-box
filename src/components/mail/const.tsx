@@ -17,7 +17,7 @@ const columns: ColumnsType<DataType> = [
   {
     title: 'Дата',
     dataIndex: 'data',
-    render: (_value, record) => <BoldMessageUI isRead={record.isRead} text={record.preview}/>
+    render: (_value, record) => <BoldMessageUI isRead={record.isRead} text={record.data}/>
   },
   {
     title: 'Действие',

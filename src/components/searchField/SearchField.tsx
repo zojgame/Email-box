@@ -31,17 +31,18 @@ const SearchField = () => {
 
     const handleSelectChange = (_value: string, option: EmailOption | EmailOption[]) => {
         const emailOption = option as EmailOption
-        const messageId = emailOption.key
-        setSelectedEmail(emailOption)
-        emailsStore.searchMessage(messageId)
+        if(emailOption){
+            const messageId = emailOption.key
+            setSelectedEmail(emailOption)
+            emailsStore.searchMessage(messageId)
+        }
     }
 
     const onCleanButtonClick = () => {
         const currentFolder = emailsStore.currentFolder
         emailsStore.setCurrentFolder(currentFolder)
         const selectedEmails = [...emailsStore.selectedMails].filter((mail) => mail.key !== selectedEmail?.key)
-        emailsStore.setSelectedEmails([...selectedEmails])
-        
+        emailsStore.setSelectedEmails([...selectedEmails])        
     }
 
    return (

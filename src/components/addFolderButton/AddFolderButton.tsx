@@ -70,7 +70,12 @@ const AddFolderButton = () => {
                 <Form.Item
                     label="Название"
                     name="title"
-                    rules={[{ required: true, message: 'Пожалуйста введите название' }]}
+                    rules={[{ required: true, message: 'Пожалуйста введите название' },
+                    {validator: async (_, value) => {
+                        if(value !== undefined && value.length > 0 && value.replaceAll(' ', '').length === 0){
+                            return Promise.reject(new Error("Поле не может быть пустым!"))
+                        }
+                    }}]}
                 >
                     <Input onChange={handleAddFolderChange}/>
                 </Form.Item>

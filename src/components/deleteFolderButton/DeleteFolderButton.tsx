@@ -2,6 +2,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { message, Button, Modal } from "antd";
 import { useState } from "react";
 import { emailsStore } from "../../store/store";
+import { folders } from "..";
 
 /**
  * Кнопка удаление папок
@@ -16,12 +17,16 @@ const DeleteFolderButton = () => {
     }
     
     const handleOnOkButtonClick = () => {
-        if(emailsStore.folders.length < 1){
-            message.error('Папок не может быть меньше 1')
+        const currentFolder = emailsStore.currentFolder
+        const isMainFolder = folders.find((folder) => folder.key === currentFolder.key) !== undefined
+
+        if(isMainFolder){
+            message.error('Основные папки нельзя удалить!')
         }
         else{
             emailsStore.deleteFolder()
             setIsModal(false)
+            message.success('Папка успешно удалена!')
         }
     }
     
