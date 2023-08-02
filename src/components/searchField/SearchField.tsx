@@ -3,6 +3,7 @@ import { emails } from '../../mock';
 import { Email, EmailOption } from '..';
 import { emailsStore } from '../../store/store';
 import { useState } from 'react';
+import { observer } from 'mobx-react-lite';
 
 /**
  * Функция, которая конвертирует массив сообщений, 
@@ -25,7 +26,7 @@ function convertToOption(emails: Email[]) {
  * Компонент поля поиска всех сообщений
  * @returns {JSX.Element} Возвращает React компонент
  */
-const SearchField = () => {
+const SearchField = observer(() => {
     const emailOptions = convertToOption(emails)
     const [selectedEmail, setSelectedEmail] = useState<EmailOption>()
 
@@ -55,12 +56,11 @@ const SearchField = () => {
                 onChange={handleSelectChange}
                 options={emailOptions}
                 onClear={onCleanButtonClick}
-            >
-            
+            >            
             </Select>            
        </>
    );
-};
+});
 
 export {SearchField} ;
 

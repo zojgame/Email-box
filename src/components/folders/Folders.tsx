@@ -16,11 +16,9 @@ interface FoldersProps {
 
 const Folders = observer(({folders} : FoldersProps) => {
   const [collapsed, setCollapsed] = useState(true)
-
   const toggleCollapsed = () => {
       setCollapsed(!collapsed);
   };
-
   const handleOnSelectFolder = (value : SelectItem) => {
     const folder = [...folders].find((folder) => folder.key === value.key)
     if(folder !== undefined){
